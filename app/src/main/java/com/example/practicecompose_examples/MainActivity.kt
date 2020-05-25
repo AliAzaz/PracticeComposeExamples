@@ -3,12 +3,14 @@ package com.example.practicecompose_examples
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
+import androidx.ui.core.ContentScale
 import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
+import androidx.ui.foundation.Image
 import androidx.ui.foundation.Text
-import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
+import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 
@@ -17,23 +19,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme {
-                Greeting("Ali")
+                ColumnGreeting()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    val modifier = Modifier.padding(10.dp)
-    val color = Color.Blue
-    Text(text = "Hi! My name is $name", modifier = modifier, color = color)
+fun ColumnGreeting() {
+    val image = imageResource(id = R.drawable.scene_01)
+    val imageModifier = Modifier
+        .preferredHeightIn(maxHeight = 160.dp)
+        .fillMaxWidth()
+    val items = listOf("Ali", "John", "Wick", "Tom")
+    Column(
+        modifier = Modifier.padding(16.dp)
+    ) {
+        Image(image, modifier = imageModifier, contentScale = ContentScale.Crop)
+        Text(text = "Hello ${items.random()}!", style = MaterialTheme.typography.h2)
+        Text(text = "Hello ${items.random()}!", style = MaterialTheme.typography.h3)
+    }
 }
 
 @Preview
 @Composable
 fun DefaultPreview() {
     MaterialTheme {
-        Greeting("Ali")
+        ColumnGreeting()
     }
 }

@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="PracticeCompose_01.app" target="1.8" />
+      <module name="practicecompose_examples.app" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
