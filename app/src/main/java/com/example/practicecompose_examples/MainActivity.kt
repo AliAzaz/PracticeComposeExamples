@@ -42,6 +42,7 @@ fun ColumnGreeting() {
         modifier = Modifier.padding(16.dp)
     ) {
         Image(image, modifier = imageModifier, contentScale = ContentScale.Crop)
+
         Text(text = "Hello ${items.random()}!", style = MaterialTheme.typography.h2)
         Text(text = "Hello ${items.random()}!", style = MaterialTheme.typography.h3)
     }
