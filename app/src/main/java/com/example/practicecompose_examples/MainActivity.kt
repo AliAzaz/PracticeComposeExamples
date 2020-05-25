@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
 import androidx.ui.core.ContentScale
 import androidx.ui.core.Modifier
+import androidx.ui.core.clip
 import androidx.ui.core.setContent
 import androidx.ui.foundation.Image
 import androidx.ui.foundation.Text
-import androidx.ui.layout.*
+import androidx.ui.foundation.shape.corner.RoundedCornerShape
+import androidx.ui.layout.Column
+import androidx.ui.layout.fillMaxWidth
+import androidx.ui.layout.padding
+import androidx.ui.layout.preferredHeightIn
 import androidx.ui.material.MaterialTheme
 import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
@@ -31,6 +36,7 @@ fun ColumnGreeting() {
     val imageModifier = Modifier
         .preferredHeightIn(maxHeight = 160.dp)
         .fillMaxWidth()
+        .clip(shape = RoundedCornerShape(6.dp))
     val items = listOf("Ali", "John", "Wick", "Tom")
     Column(
         modifier = Modifier.padding(16.dp)
