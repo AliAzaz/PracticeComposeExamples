@@ -86,7 +86,9 @@ fun cardViewImplementer() {
                             shape = RoundedCornerShape(5.dp),
                             modifier = Modifier.padding(5.dp)
                         ) {
-                            Icon(asset = Icons.Filled.ArrowForward)
+
+                        Icon(asset = Icons.Filled.ArrowForward)
+
                         }
                     }
                 }
