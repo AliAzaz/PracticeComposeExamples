@@ -1,21 +1,22 @@
 package com.example.practicecompose_examples
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
-import androidx.ui.core.ContentScale
-import androidx.ui.core.Modifier
-import androidx.ui.core.drawShadow
-import androidx.ui.core.setContent
-import androidx.ui.foundation.*
+import androidx.ui.core.*
+import androidx.ui.foundation.AdapterList
+import androidx.ui.foundation.Box
+import androidx.ui.foundation.Image
+import androidx.ui.foundation.Text
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.layout.*
-import androidx.ui.material.Button
+import androidx.ui.layout.Column
+import androidx.ui.layout.fillMaxWidth
+import androidx.ui.layout.padding
+import androidx.ui.layout.preferredHeightIn
 import androidx.ui.material.Card
+import androidx.ui.material.ListItem
 import androidx.ui.material.MaterialTheme
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.ArrowForward
-import androidx.ui.material.icons.filled.Check
 import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
@@ -31,17 +32,31 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun CardGreeting() {
-    VerticalScroller {
+
+    AdapterList(data = (0..50).toList()) { item ->
+        ListItem(onClick = {
+
+        }) {
+            cardViewImplementer()
+        }
+    }
+
+    /*VerticalScroller {
         Column {
-            for (x in 0..2) {
+            for (x in 0..50) {
                 MaterialTheme {
                     cardViewImplementer()
 //                    Divider()
                 }
             }
         }
-    }
+    }*/
 
+}
+
+@Composable
+fun showToast(msg: String) {
+    Toast.makeText(ContextAmbient.current, msg, Toast.LENGTH_SHORT).show()
 }
 
 @Composable
@@ -73,22 +88,6 @@ fun cardViewImplementer() {
                 ) {
                     Text("Davenport, California", style = MaterialTheme.typography.body1)
                     Text("December 2018", style = MaterialTheme.typography.body2)
-                    Row(modifier = Modifier.padding(0.dp, 25.dp, 0.dp, 5.dp)) {
-                        Button(
-                            onClick = {},
-                            shape = RoundedCornerShape(5.dp),
-                            modifier = Modifier.padding(5.dp)
-                        ) {
-                            Icon(asset = Icons.Filled.Check)
-                        }
-                        Button(
-                            onClick = {},
-                            shape = RoundedCornerShape(5.dp),
-                            modifier = Modifier.padding(5.dp)
-                        ) {
-                            Icon(asset = Icons.Filled.ArrowForward)
-                        }
-                    }
                 }
             }
 
