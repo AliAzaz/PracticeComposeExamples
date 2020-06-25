@@ -36,7 +36,7 @@ fun CardGreeting() {
             for (x in 0..2) {
                 MaterialTheme {
                     cardViewImplementer()
-//                    Divider()
+                    Spacer(modifier = Modifier.padding(2.dp))
                 }
             }
         }
@@ -53,49 +53,46 @@ fun cardViewImplementer() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .drawShadow(5.dp)
-        ) {
+                .drawShadow(5.dp), children =
+            {
+                Column(children = {
+                    Image(
+                        imageResource(id = R.drawable.scene_01),
+                        modifier = Modifier.preferredHeightIn(160.dp, 260.dp)
+                            .fillMaxWidth(),
+                        contentScale = ContentScale.Crop
+                    )
+                    Text(
+                        "A day in Shark Fin Cove",
+                        style = MaterialTheme.typography.h4,
+                        modifier = Modifier.padding(15.dp, 20.dp, 0.dp, 0.dp)
+                    )
+                    Column(
+                        modifier = Modifier.padding(15.dp), children =
+                        {
+                            Text("Davenport, California", style = MaterialTheme.typography.body1)
+                            Text("December 2018", style = MaterialTheme.typography.body2)
+                            Row(modifier = Modifier.padding(0.dp, 25.dp, 0.dp, 5.dp), children = {
+                                Button(
+                                    onClick = {},
+                                    shape = RoundedCornerShape(5.dp),
+                                    modifier = Modifier.padding(5.dp)
+                                ) {
+                                    Icon(asset = Icons.Filled.Check)
+                                }
+                                Button(
+                                    onClick = {},
+                                    shape = RoundedCornerShape(5.dp),
+                                    modifier = Modifier.padding(5.dp)
+                                ) {
 
-            Column {
-                Image(
-                    imageResource(id = R.drawable.scene_01),
-                    modifier = Modifier.preferredHeightIn(160.dp, 260.dp)
-                        .fillMaxWidth(),
-                    contentScale = ContentScale.Crop
-                )
-                Text(
-                    "A day in Shark Fin Cove",
-                    style = MaterialTheme.typography.h4,
-                    modifier = Modifier.padding(15.dp, 20.dp, 0.dp, 0.dp)
-                )
-                Column(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    Text("Davenport, California", style = MaterialTheme.typography.body1)
-                    Text("December 2018", style = MaterialTheme.typography.body2)
-                    Row(modifier = Modifier.padding(0.dp, 25.dp, 0.dp, 5.dp)) {
-                        Button(
-                            onClick = {},
-                            shape = RoundedCornerShape(5.dp),
-                            modifier = Modifier.padding(5.dp)
-                        ) {
-                            Icon(asset = Icons.Filled.Check)
-                        }
-                        Button(
-                            onClick = {},
-                            shape = RoundedCornerShape(5.dp),
-                            modifier = Modifier.padding(5.dp)
-                        ) {
+                                    Icon(asset = Icons.Filled.ArrowForward)
 
-                        Icon(asset = Icons.Filled.ArrowForward)
-
-                        }
-                    }
-                }
-            }
-
-        }
-
+                                }
+                            })
+                        })
+                })
+            })
     }
 }
 
