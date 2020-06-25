@@ -18,6 +18,7 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
+import androidx.ui.unit.sp
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,13 +40,12 @@ fun ColumnGreeting() {
         .clip(shape = RoundedCornerShape(6.dp))
     val items = listOf("Ali", "John", "Wick", "Tom")
     Column(
-        modifier = Modifier.padding(16.dp)
-    ) {
-        Image(image, modifier = imageModifier, contentScale = ContentScale.Crop)
-
-        Text(text = "Hello ${items.random()}!", style = MaterialTheme.typography.h2)
-        Text(text = "Hello ${items.random()}!", style = MaterialTheme.typography.h3)
-    }
+        modifier = Modifier.padding(16.dp), children =
+        {
+            Image(image, modifier = imageModifier, contentScale = ContentScale.Crop)
+            Text(text = "Hello ${items.random()}!", style = MaterialTheme.typography.h2)
+            Text(text = "Hello ${items.random()}!", fontSize = 15.sp)
+        })
 }
 
 @Preview
