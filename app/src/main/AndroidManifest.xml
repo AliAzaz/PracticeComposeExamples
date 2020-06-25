@@ -11,8 +11,7 @@
         android:theme="@style/Theme.PracticeCompose_01">
         <activity
             android:name="com.example.practicecompose_examples.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.PracticeCompose_01.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
