@@ -5,13 +5,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
 import androidx.ui.core.*
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.Image
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.clickable
+import androidx.ui.foundation.*
 import androidx.ui.foundation.lazy.LazyColumnItems
+import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
+import androidx.ui.graphics.Color
+import androidx.ui.graphics.drawscope.Stroke
 import androidx.ui.layout.*
+import androidx.ui.layout.ColumnScope.gravity
 import androidx.ui.material.Card
 import androidx.ui.material.MaterialTheme
 import androidx.ui.res.imageResource
@@ -22,17 +23,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CardGreeting()
+            CardListViewGreeting()
         }
     }
 }
 
 @Composable
-fun CardGreeting() {
+fun CardListViewGreeting() {
 
-    LazyColumnItems(items = (0..50).toList()) { item ->
+    LazyColumnItems(items = (0..5).toList()) { item ->
         cardViewImplementer(item)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(2.dp))
     }
 
 }
@@ -47,29 +48,33 @@ fun cardViewImplementer(item: Int) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .drawShadow(5.dp)
+                .drawShadow(3.dp)
+                .padding(0.dp, 13.dp, 0.dp, 0.dp)
                 .clickable(onClick = {
                     Toast.makeText(context, "Clicked $item", Toast.LENGTH_SHORT).show()
                 }), children = {
 
-                Column {
-                    Image(
-                        imageResource(id = R.drawable.scene_01),
-                        modifier = Modifier.preferredHeightIn(160.dp, 260.dp)
-                            .fillMaxWidth(),
-                        contentScale = ContentScale.Crop
-                    )
-                    Text(
-                        "A day in Shark Fin Cove",
-                        style = MaterialTheme.typography.h4,
-                        modifier = Modifier.padding(15.dp, 20.dp, 0.dp, 0.dp)
-                    )
-                    Column(
-                        modifier = Modifier.padding(15.dp)
-                    ) {
-                        Text("Davenport, California", style = MaterialTheme.typography.body1)
-                        Text("December 2018", style = MaterialTheme.typography.body2)
-                    }
+                Image(
+                    asset = imageResource(R.drawable.scene_01),
+                    modifier = Modifier.drawBackground(
+                        color = Color.Black,
+                        style = Stroke(4f),
+                        shape = CircleShape
+                    ).preferredSize(120.dp)
+                        .gravity(Alignment.CenterHorizontally)
+                        .clip(CircleShape),
+                    contentScale = ContentScale.FillHeight
+                )
+                Text(
+                    "A day in Shark Fin Cove",
+                    style = MaterialTheme.typography.h4,
+                    modifier = Modifier.padding(15.dp, 10.dp, 0.dp, 0.dp)
+                )
+                Column(
+                    modifier = Modifier.padding(15.dp)
+                ) {
+                    Text("Davenport, California", style = MaterialTheme.typography.body1)
+                    Text("December 2018", style = MaterialTheme.typography.body2)
                 }
 
             })
@@ -79,5 +84,5 @@ fun cardViewImplementer(item: Int) {
 @Preview
 @Composable
 fun DefaultPreview() {
-    CardGreeting()
+    CardListViewGreeting()
 }
