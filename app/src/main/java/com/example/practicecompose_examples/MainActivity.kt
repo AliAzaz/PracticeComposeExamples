@@ -13,7 +13,10 @@ import androidx.ui.graphics.Color
 import androidx.ui.graphics.drawscope.Stroke
 import androidx.ui.layout.*
 import androidx.ui.material.Card
+import androidx.ui.material.IconButton
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.icons.Icons
+import androidx.ui.material.icons.filled.ArrowDropDown
 import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
@@ -63,13 +66,18 @@ fun cardViewImplementer(item: Int) {
                             contentScale = ContentScale.Crop
                         )
                         Column(
-                            modifier = Modifier.padding(start = 15.dp, end = 15.dp), children = {
+                            modifier = Modifier.padding(start = 15.dp, top = 5.dp, end = 15.dp),
+                            children = {
                                 Text(
                                     "Davenport, California",
                                     style = MaterialTheme.typography.body1
                                 )
                                 Text("December 2018", style = MaterialTheme.typography.body2)
                             })
+
+                        IconButton(onClick = {}) {
+                            Icon(asset = Icons.Filled.ArrowDropDown)
+                        }
 
                     })
 
