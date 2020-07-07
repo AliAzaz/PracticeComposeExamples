@@ -1,7 +1,6 @@
 package com.example.practicecompose_examples
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
 import androidx.ui.core.*
@@ -46,9 +45,7 @@ fun cardViewImplementer(item: Int) {
     Card(
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier.padding(10.dp)
-            .fillMaxWidth().clickable(onClick = {
-                Toast.makeText(context, "Clicked ${item + 1}", Toast.LENGTH_SHORT).show()
-            }),
+            .fillMaxWidth(),
         elevation = 3.dp,
         content = {
             Box(
