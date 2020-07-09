@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
 import androidx.ui.core.*
 import androidx.ui.foundation.*
-import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
@@ -32,9 +31,17 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun CardListViewGreeting() {
     MaterialTheme {
-        LazyColumnItems(items = (0..20).toList()) { item ->
+        /*LazyColumnItems(items = (0..20).toList()) { item ->
             cardViewImplementer(item)
             Spacer(modifier = Modifier.padding(2.dp))
+        }*/
+        VerticalScroller {
+            Column {
+                for (item in 0..10) {
+                    cardViewImplementer(item)
+                    Spacer(modifier = Modifier.padding(2.dp))
+                }
+            }
         }
     }
 }
@@ -51,7 +58,8 @@ fun cardViewImplementer(item: Int) {
             Box(
                 modifier = Modifier.padding(13.dp),
                 children = {
-                    Row(children = {
+
+                    Row(modifier = Modifier.fillMaxSize(), children = {
                         Image(
                             asset = imageResource(R.drawable.scene_01),
                             modifier = Modifier.drawBackground(
@@ -72,9 +80,12 @@ fun cardViewImplementer(item: Int) {
                                 Text("December 2018", style = MaterialTheme.typography.body2)
                             })
 
-                        IconButton(onClick = {}) {
-                            Icon(asset = Icons.Filled.ArrowDropDown)
+                        Box(gravity = Alignment.CenterEnd, modifier = Modifier.fillMaxSize()) {
+                            IconButton(onClick = {}) {
+                                Icon(asset = Icons.Filled.ArrowDropDown)
+                            }
                         }
+
 
                     })
 
