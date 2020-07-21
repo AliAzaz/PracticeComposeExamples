@@ -1,7 +1,10 @@
-package com.example.practicecompose_examples.ui
+package com.example.practicecompose_examples.ui.list
 
 import androidx.compose.Composable
-import androidx.ui.core.*
+import androidx.ui.core.Alignment
+import androidx.ui.core.ContentScale
+import androidx.ui.core.Modifier
+import androidx.ui.core.clip
 import androidx.ui.foundation.*
 import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
@@ -16,23 +19,11 @@ import androidx.ui.material.icons.filled.ArrowDropDown
 import androidx.ui.res.imageResource
 import androidx.ui.unit.dp
 import com.example.practicecompose_examples.R
+import com.example.practicecompose_examples.model.Task
+import com.example.practicecompose_examples.state.AppMain
 
 @Composable
-fun ItemLayoutList() {
-    VerticalScroller {
-        Column {
-            for (item in 0..3) {
-                cardViewItem(item)
-                Spacer(modifier = Modifier.padding(2.dp))
-            }
-        }
-    }
-}
-
-
-@Composable
-private fun cardViewItem(item: Int = 0) {
-    val context = ContextAmbient.current
+private fun cardViewItem(task: Task) {
     Card(
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier.padding(10.dp)
@@ -75,4 +66,16 @@ private fun cardViewItem(item: Int = 0) {
 
                 })
         })
+}
+
+@Composable
+fun ItemList() {
+    VerticalScroller {
+        Column {
+            AppMain.taskList.forEach { task ->
+                cardViewItem(task)
+                Spacer(modifier = Modifier.padding(2.dp))
+            }
+        }
+    }
 }

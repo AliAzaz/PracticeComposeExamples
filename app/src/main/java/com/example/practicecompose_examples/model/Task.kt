@@ -1,3 +1,11 @@
 package com.example.practicecompose_examples.model
 
-data class Task(val title: String, val message: String)
+import androidx.compose.getValue
+import androidx.compose.mutableStateOf
+import androidx.compose.setValue
+
+class Task(title: String, message: String) {
+    var title by mutableStateOf(title)
+    var message by mutableStateOf(message)
+}
+
