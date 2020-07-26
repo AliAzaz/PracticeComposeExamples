@@ -44,8 +44,8 @@ fun TODOAppGreeting() {
 @Preview
 @Composable
 fun DefaultPreview() {
-//    TODOAppGreeting()
-    AddTask()
+    TODOAppGreeting()
+//    AddTask()
 }
 
 @Composable

@@ -6,18 +6,19 @@ import androidx.compose.state
 import androidx.ui.core.ContentScale
 import androidx.ui.core.Modifier
 import androidx.ui.core.clip
-import androidx.ui.foundation.Image
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.TextField
-import androidx.ui.foundation.drawBackground
+import androidx.ui.foundation.*
 import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.drawscope.Stroke
 import androidx.ui.input.TextFieldValue
 import androidx.ui.layout.*
+import androidx.ui.layout.RowScope.weight
 import androidx.ui.material.Button
+import androidx.ui.material.IconButton
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.icons.Icons
+import androidx.ui.material.icons.filled.Clear
 import androidx.ui.res.imageResource
 import androidx.ui.text.TextStyle
 import androidx.ui.unit.dp
@@ -48,26 +49,25 @@ fun AddTask() {
                         .clip(CircleShape),
                     contentScale = ContentScale.Crop
                 )
-
-                Column(modifier = Modifier.padding(5.dp)) {
-                    Stack {
+                Column(modifier = Modifier.padding(5.dp).weight(2f)) {
+                    Stack(Modifier.weight(1f)) {
                         TextField(
                             value = title.value,
                             onValueChange = { textFieldValue -> title.value = textFieldValue },
-                            modifier = Modifier.fillMaxWidth().height(10.dp).padding(5.dp),
+                            modifier = Modifier.fillMaxWidth().padding(5.dp),
                             textStyle = MaterialTheme.typography.h6
                         )
                         if (title.value.text.isEmpty()) Text(
                             modifier = Modifier.padding(5.dp),
-                            text = "Title",
+                            text = "Title of Task",
                             style = TextStyle(color = Color(0x77666666)) + MaterialTheme.typography.h6
                         )
                     }
-                    Stack {
+                    Stack(Modifier.weight(1f)) {
                         TextField(
                             value = task.value,
                             onValueChange = { textFieldValue -> task.value = textFieldValue },
-                            modifier = Modifier.fillMaxWidth().height(100.dp).padding(5.dp),
+                            modifier = Modifier.fillMaxWidth().padding(5.dp),
                             textStyle = MaterialTheme.typography.body1
                         )
                         if (task.value.text.isEmpty()) Text(
@@ -79,6 +79,7 @@ fun AddTask() {
 
                 }
 
+                CloseTaskScreen()
             })
 
         AddTaskBtn(title, task)
@@ -109,6 +110,19 @@ private fun AddTaskBtn(
         shape = RoundedCornerShape(20.dp),
         text = { Text(text = "Add Task", color = Color.White) }
     )
+}
+
+@Composable
+private fun CloseTaskScreen() {
+    IconButton(onClick = {
+        routingActivity(MenuOptions.TaskList)
+    }) {
+        Icon(
+            modifier = Modifier.size(30.dp).weight(1f),
+            asset = Icons.Filled.Clear,
+            tint = Color(0xFF656C70)
+        )
+    }
 }
 
 

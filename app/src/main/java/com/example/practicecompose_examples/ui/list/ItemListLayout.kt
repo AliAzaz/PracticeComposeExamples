@@ -21,6 +21,8 @@ import androidx.ui.unit.dp
 import com.example.practicecompose_examples.R
 import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.AppMain
+import com.example.practicecompose_examples.state.MenuOptions
+import com.example.practicecompose_examples.state.routingActivity
 
 @Composable
 private fun cardViewItem(task: Task) {
@@ -49,14 +51,19 @@ private fun cardViewItem(task: Task) {
                             modifier = Modifier.padding(start = 15.dp, top = 5.dp, end = 15.dp),
                             children = {
                                 Text(
-                                    "Davenport, California",
-                                    style = MaterialTheme.typography.body1
+                                    task.title.capitalize(),
+                                    style = MaterialTheme.typography.h6
                                 )
-                                Text("December 2018", style = MaterialTheme.typography.body2)
+                                Text(
+                                    task.message.capitalize(),
+                                    style = MaterialTheme.typography.body2
+                                )
                             })
 
                         Box(gravity = Alignment.CenterEnd, modifier = Modifier.fillMaxSize()) {
-                            IconButton(onClick = {}) {
+                            IconButton(onClick = {
+                                routingActivity(MenuOptions.AddTask)
+                            }) {
                                 Icon(asset = Icons.Filled.ArrowDropDown)
                             }
                         }
