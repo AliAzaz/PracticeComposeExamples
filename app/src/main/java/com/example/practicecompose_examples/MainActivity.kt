@@ -55,6 +55,7 @@ fun AppContent(app: AppMain) {
             when (activity) {
                 is MenuOptions.AddTask -> AddTask()
                 is MenuOptions.TaskList -> TaskList()
+                is MenuOptions.ModifyTask -> AddTask(activity.task)
             }
         }
 

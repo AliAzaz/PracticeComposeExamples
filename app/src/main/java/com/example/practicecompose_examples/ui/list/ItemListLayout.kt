@@ -62,10 +62,8 @@ private fun cardViewItem(task: Task) {
 
                         Box(gravity = Alignment.CenterEnd, modifier = Modifier.fillMaxSize()) {
                             IconButton(onClick = {
-                                routingActivity(MenuOptions.AddTask)
-                            }) {
-                                Icon(asset = Icons.Filled.ArrowDropDown)
-                            }
+                                routingActivity(MenuOptions.ModifyTask(task))
+                            }, icon = { Icon(asset = Icons.Filled.ArrowDropDown) })
                         }
 
 

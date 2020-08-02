@@ -27,16 +27,20 @@ import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.MenuOptions
 import com.example.practicecompose_examples.state.routingActivity
 import com.example.practicecompose_examples.utils.addTask
+import com.example.practicecompose_examples.utils.isTitleExist
+import com.example.practicecompose_examples.utils.modifyTask
 import com.example.practicecompose_examples.utils.validateFields
 
 @Composable
-fun AddTask() {
-    val title = state { TextFieldValue(text = "") }
-    val task = state { TextFieldValue(text = "") }
+fun AddTask(data: Task = Task("", "")) {
+    val title = state { TextFieldValue(text = data.title) }
+    val task = state { TextFieldValue(text = data.message) }
+    val titleExist = state { false }
 
     Column(modifier = Modifier.fillMaxWidth().height(300.dp), children = {
 
-        Row(modifier = Modifier.fillMaxWidth().height(250.dp).padding(10.dp),
+        Row(
+            modifier = Modifier.fillMaxWidth().height(250.dp).padding(10.dp),
             children = {
                 Image(
                     asset = imageResource(R.drawable.scene_01),
@@ -53,7 +57,12 @@ fun AddTask() {
                     Stack(Modifier.weight(1f)) {
                         TextField(
                             value = title.value,
-                            onValueChange = { textFieldValue -> title.value = textFieldValue },
+                            onValueChange = { title.value = it },
+                            onFocusChange = {
+                                if (it) {
+                                    titleExist.value = isTitleExist(title)
+                                }
+                            },
                             modifier = Modifier.fillMaxWidth().padding(5.dp),
                             textStyle = MaterialTheme.typography.h6
                         )
@@ -66,7 +75,7 @@ fun AddTask() {
                     Stack(Modifier.weight(1f)) {
                         TextField(
                             value = task.value,
-                            onValueChange = { textFieldValue -> task.value = textFieldValue },
+                            onValueChange = { task.value = it },
                             modifier = Modifier.fillMaxWidth().padding(5.dp),
                             textStyle = MaterialTheme.typography.body1
                         )
@@ -82,7 +91,7 @@ fun AddTask() {
                 CloseTaskScreen()
             })
 
-        AddTaskBtn(title, task)
+        AddTaskBtn(data, title, task)
 
     })
 
@@ -91,9 +100,11 @@ fun AddTask() {
 
 @Composable
 private fun AddTaskBtn(
+    prvTask: Task,
     titleText: MutableState<TextFieldValue>,
     taskText: MutableState<TextFieldValue>
 ) {
+    val taskFlag = prvTask.title == ""
     Button(
         modifier = Modifier.padding(10.dp, 0.dp, 0.dp, 0.dp),
         backgroundColor =
@@ -104,11 +115,12 @@ private fun AddTaskBtn(
         ) Color(0x77666666) else MaterialTheme.colors.primary,
         onClick = {
             if (!validateFields(titleText, taskText)) return@Button
-            addTask(Task(titleText.value.text, taskText.value.text))
+            if (taskFlag) addTask(Task(titleText.value.text, taskText.value.text))
+            else modifyTask(prvTask, Task(titleText.value.text, taskText.value.text))
             routingActivity(MenuOptions.TaskList)
         },
         shape = RoundedCornerShape(20.dp),
-        text = { Text(text = "Add Task", color = Color.White) }
+        text = { Text(text = if (taskFlag) "Add Task" else "Modify Task", color = Color.White) }
     )
 }
 

@@ -9,6 +9,7 @@ import com.example.practicecompose_examples.state.AppMain.route_screen
 sealed class MenuOptions {
     object TaskList : MenuOptions()
     object AddTask : MenuOptions()
+    data class ModifyTask(val task: Task) : MenuOptions()
 }
 
 
