@@ -10,9 +10,9 @@ fun addTask(taskText: Task) {
     AppMain.taskList.add(Task(taskText.title, taskText.message))
 }
 
-fun isTitleExist(title: MutableState<TextFieldValue>): Boolean {
-    val item = AppMain.taskList.find { it.title == title.value.toString() }
-    return item != null
+fun isTitleExist(modifyTask: Boolean = false, title: MutableState<TextFieldValue>): Boolean {
+    val item = AppMain.taskList.filter { it.title == title.value.text.trim() }
+    return if (modifyTask) item.size > 1 else item.size == 1
 }
 
 fun modifyTask(prvTask: Task, taskText: Task) {
@@ -23,4 +23,5 @@ fun modifyTask(prvTask: Task, taskText: Task) {
 fun validateFields(
     titleText: MutableState<TextFieldValue>,
     taskText: MutableState<TextFieldValue>
-): Boolean = !TextUtils.isEmpty(titleText.value.text) && !TextUtils.isEmpty(taskText.value.text)
+): Boolean =
+    !TextUtils.isEmpty(titleText.value.text.trim()) && !TextUtils.isEmpty(taskText.value.text.trim())

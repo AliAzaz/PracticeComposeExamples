@@ -54,14 +54,17 @@ fun AddTask(data: Task = Task("", "")) {
                     contentScale = ContentScale.Crop
                 )
                 Column(modifier = Modifier.padding(5.dp).weight(2f)) {
+                    if (titleExist.value) Text(
+                        modifier = Modifier.padding(5.dp),
+                        text = "Title already exist",
+                        style = TextStyle(color = Color(0xFFF50B0B)) + MaterialTheme.typography.body1
+                    )
                     Stack(Modifier.weight(1f)) {
                         TextField(
                             value = title.value,
-                            onValueChange = { title.value = it },
-                            onFocusChange = {
-                                if (it) {
-                                    titleExist.value = isTitleExist(title)
-                                }
+                            onValueChange = {
+                                title.value = it
+                                titleExist.value = isTitleExist(data.title != "", title)
                             },
                             modifier = Modifier.fillMaxWidth().padding(5.dp),
                             textStyle = MaterialTheme.typography.h6
@@ -91,7 +94,7 @@ fun AddTask(data: Task = Task("", "")) {
                 CloseTaskScreen()
             })
 
-        AddTaskBtn(data, title, task)
+        AddTaskBtn(titleExist, data, title, task)
 
     })
 
@@ -100,6 +103,7 @@ fun AddTask(data: Task = Task("", "")) {
 
 @Composable
 private fun AddTaskBtn(
+    titleExist: MutableState<Boolean>,
     prvTask: Task,
     titleText: MutableState<TextFieldValue>,
     taskText: MutableState<TextFieldValue>
@@ -108,12 +112,16 @@ private fun AddTaskBtn(
     Button(
         modifier = Modifier.padding(10.dp, 0.dp, 0.dp, 0.dp),
         backgroundColor =
-        if (!validateFields(
+        when {
+            titleExist.value -> Color(0x77666666)
+            !validateFields(
                 titleText,
                 taskText
-            )
-        ) Color(0x77666666) else MaterialTheme.colors.primary,
+            ) -> Color(0x77666666)
+            else -> MaterialTheme.colors.primary
+        },
         onClick = {
+            if (titleExist.value) return@Button
             if (!validateFields(titleText, taskText)) return@Button
             if (taskFlag) addTask(Task(titleText.value.text, taskText.value.text))
             else modifyTask(prvTask, Task(titleText.value.text, taskText.value.text))

@@ -51,11 +51,11 @@ private fun cardViewItem(task: Task) {
                             modifier = Modifier.padding(start = 15.dp, top = 5.dp, end = 15.dp),
                             children = {
                                 Text(
-                                    task.title.capitalize(),
+                                    task.title,
                                     style = MaterialTheme.typography.h6
                                 )
                                 Text(
-                                    task.message.capitalize(),
+                                    task.message,
                                     style = MaterialTheme.typography.body2
                                 )
                             })
