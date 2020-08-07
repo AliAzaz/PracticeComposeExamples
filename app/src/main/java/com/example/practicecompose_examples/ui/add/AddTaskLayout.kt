@@ -60,11 +60,11 @@ fun AddTask(data: Task = Task("", "")) {
                         style = TextStyle(color = Color(0xFFF50B0B)) + MaterialTheme.typography.body1
                     )
                     Stack(Modifier.weight(1f)) {
-                        TextField(
+                        if (data.title == "") TextField(
                             value = title.value,
                             onValueChange = {
                                 title.value = it
-                                titleExist.value = isTitleExist(data.title != "", title)
+                                titleExist.value = isTitleExist(title)
                             },
                             modifier = Modifier.fillMaxWidth().padding(5.dp),
                             textStyle = MaterialTheme.typography.h6
@@ -72,6 +72,11 @@ fun AddTask(data: Task = Task("", "")) {
                         if (title.value.text.isEmpty()) Text(
                             modifier = Modifier.padding(5.dp),
                             text = "Title of Task",
+                            style = TextStyle(color = Color(0x77666666)) + MaterialTheme.typography.h6
+                        )
+                        if (data.title != "") Text(
+                            modifier = Modifier.padding(5.dp),
+                            text = data.title,
                             style = TextStyle(color = Color(0x77666666)) + MaterialTheme.typography.h6
                         )
                     }
@@ -121,10 +126,12 @@ private fun AddTaskBtn(
             else -> MaterialTheme.colors.primary
         },
         onClick = {
-            if (titleExist.value) return@Button
-            if (!validateFields(titleText, taskText)) return@Button
-            if (taskFlag) addTask(Task(titleText.value.text, taskText.value.text))
-            else modifyTask(prvTask, Task(titleText.value.text, taskText.value.text))
+            when {
+                titleExist.value -> return@Button
+                !validateFields(titleText, taskText) -> return@Button
+                taskFlag -> addTask(Task(titleText.value.text, taskText.value.text))
+                else -> modifyTask(prvTask, Task(titleText.value.text, taskText.value.text))
+            }
             routingActivity(MenuOptions.TaskList)
         },
         shape = RoundedCornerShape(20.dp),

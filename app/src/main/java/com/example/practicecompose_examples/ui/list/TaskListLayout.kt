@@ -7,6 +7,9 @@ import androidx.ui.material.Scaffold
 fun TaskList() {
     Scaffold(
         floatingActionButton = { FabAddTask() },
-        bodyContent = { ItemList() }
+        bodyContent = { ItemList() },
+        bottomBar = { BottomFloatBar() },
+        isFloatingActionButtonDocked = true,
+        floatingActionButtonPosition = Scaffold.FabPosition.Center
     )
 }

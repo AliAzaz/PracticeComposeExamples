@@ -16,7 +16,7 @@ fun FabAddTask() {
             routingActivity(MenuOptions.AddTask)
         },
         backgroundColor = colorResource(
-            id = R.color.purple_500
+            id = R.color.teel_200
         )
     ) { Icon(asset = vectorResource(id = R.drawable.ic_note_add)) }
 }
