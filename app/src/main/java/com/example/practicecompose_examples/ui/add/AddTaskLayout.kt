@@ -1,27 +1,31 @@
 package com.example.practicecompose_examples.ui.add
 
-import androidx.compose.Composable
-import androidx.compose.MutableState
-import androidx.compose.state
-import androidx.ui.core.ContentScale
-import androidx.ui.core.Modifier
-import androidx.ui.core.clip
-import androidx.ui.foundation.*
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.drawscope.Stroke
-import androidx.ui.input.TextFieldValue
-import androidx.ui.layout.*
-import androidx.ui.layout.RowScope.weight
-import androidx.ui.material.Button
-import androidx.ui.material.IconButton
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.Clear
-import androidx.ui.res.imageResource
-import androidx.ui.text.TextStyle
-import androidx.ui.unit.dp
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.ColumnScope.weight
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.TextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.state
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import com.example.practicecompose_examples.R
 import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.MenuOptions
@@ -42,11 +46,11 @@ fun AddTask(data: Task = Task("", "")) {
         Row(
             modifier = Modifier.fillMaxWidth().height(250.dp).padding(10.dp),
             children = {
+                Stroke(4f)
                 Image(
                     asset = imageResource(R.drawable.scene_01),
-                    modifier = Modifier.drawBackground(
+                    modifier = Modifier.background(
                         color = Color.Black,
-                        style = Stroke(4f),
                         shape = CircleShape
                     ).padding(5.dp)
                         .preferredSize(50.dp)
@@ -59,20 +63,23 @@ fun AddTask(data: Task = Task("", "")) {
                         text = "Title already exist",
                         style = TextStyle(color = Color(0xFFF50B0B)) + MaterialTheme.typography.body1
                     )
-                    Stack(Modifier.weight(1f)) {
+                    Stack(modifier = Modifier.weight(2f)) {
                         if (data.title == "") TextField(
                             value = title.value,
-                            onValueChange = {
-                                title.value = it
+                            onValueChange = { item ->
+                                title.value = item
                                 titleExist.value = isTitleExist(title)
                             },
-                            modifier = Modifier.fillMaxWidth().padding(5.dp),
-                            textStyle = MaterialTheme.typography.h6
-                        )
-                        if (title.value.text.isEmpty()) Text(
-                            modifier = Modifier.padding(5.dp),
-                            text = "Title of Task",
-                            style = TextStyle(color = Color(0x77666666)) + MaterialTheme.typography.h6
+                            label = {
+                                Text(
+                                    modifier = Modifier.padding(5.dp),
+                                    text = "Title of Task",
+                                    style = TextStyle(color = Color(0x77666666)) + MaterialTheme.typography.h6
+                                )
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            textStyle = MaterialTheme.typography.h6,
+                            backgroundColor = Color.White
                         )
                         if (data.title != "") Text(
                             modifier = Modifier.padding(5.dp),
@@ -80,19 +87,20 @@ fun AddTask(data: Task = Task("", "")) {
                             style = TextStyle(color = Color(0x77666666)) + MaterialTheme.typography.h6
                         )
                     }
-                    Stack(Modifier.weight(1f)) {
-                        TextField(
-                            value = task.value,
-                            onValueChange = { task.value = it },
-                            modifier = Modifier.fillMaxWidth().padding(5.dp),
-                            textStyle = MaterialTheme.typography.body1
-                        )
-                        if (task.value.text.isEmpty()) Text(
-                            modifier = Modifier.padding(5.dp),
-                            text = "Add your Today's Task",
-                            style = TextStyle(color = Color(0x77666666)) + MaterialTheme.typography.body1
-                        )
-                    }
+                    TextField(
+                        value = task.value,
+                        onValueChange = { item -> task.value = item },
+                        modifier = Modifier.fillMaxWidth(),
+                        label = {
+                            Text(
+                                modifier = Modifier.padding(5.dp),
+                                text = "Add your Today's Task",
+                                style = TextStyle(color = Color(0x77666666)) + MaterialTheme.typography.body1
+                            )
+                        },
+                        textStyle = MaterialTheme.typography.body1,
+                        backgroundColor = Color.White
+                    )
 
                 }
 
@@ -115,7 +123,7 @@ private fun AddTaskBtn(
 ) {
     val taskFlag = prvTask.title == ""
     Button(
-        modifier = Modifier.padding(10.dp, 0.dp, 0.dp, 0.dp),
+        modifier = Modifier.padding(10.dp, 10.dp, 0.dp, 0.dp),
         backgroundColor =
         when {
             titleExist.value -> Color(0x77666666)
@@ -135,7 +143,7 @@ private fun AddTaskBtn(
             routingActivity(MenuOptions.TaskList)
         },
         shape = RoundedCornerShape(20.dp),
-        text = { Text(text = if (taskFlag) "Add Task" else "Modify Task", color = Color.White) }
+        content = { Text(text = if (taskFlag) "Add Task" else "Modify Task", color = Color.White) }
     )
 }
 

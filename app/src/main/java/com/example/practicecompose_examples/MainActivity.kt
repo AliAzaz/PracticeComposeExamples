@@ -2,12 +2,12 @@ package com.example.practicecompose_examples
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
-import androidx.compose.remember
-import androidx.ui.animation.Crossfade
-import androidx.ui.core.setContent
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Surface
+import androidx.compose.animation.Crossfade
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
 import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.AppMain

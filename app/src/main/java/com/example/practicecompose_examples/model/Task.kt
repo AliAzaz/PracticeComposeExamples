@@ -1,8 +1,8 @@
 package com.example.practicecompose_examples.model
 
-import androidx.compose.getValue
-import androidx.compose.mutableStateOf
-import androidx.compose.setValue
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 
 class Task(title: String, message: String) {
     var title by mutableStateOf(title)

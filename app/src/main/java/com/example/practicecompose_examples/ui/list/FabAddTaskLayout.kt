@@ -1,10 +1,10 @@
 package com.example.practicecompose_examples.ui.list
 
-import androidx.compose.Composable
-import androidx.ui.foundation.Icon
-import androidx.ui.material.FloatingActionButton
-import androidx.ui.res.colorResource
-import androidx.ui.res.vectorResource
+import androidx.compose.foundation.Icon
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.vectorResource
 import com.example.practicecompose_examples.R
 import com.example.practicecompose_examples.state.MenuOptions
 import com.example.practicecompose_examples.state.routingActivity

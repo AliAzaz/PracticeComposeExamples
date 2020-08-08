@@ -1,8 +1,8 @@
 package com.example.practicecompose_examples.ui.list
 
-import androidx.compose.Composable
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.material.BottomAppBar
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.BottomAppBar
+import androidx.compose.runtime.Composable
 
 @Composable
 fun BottomFloatBar() {

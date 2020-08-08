@@ -1,24 +1,24 @@
 package com.example.practicecompose_examples.ui.list
 
-import androidx.compose.Composable
-import androidx.ui.core.Alignment
-import androidx.ui.core.ContentScale
-import androidx.ui.core.Modifier
-import androidx.ui.core.clip
-import androidx.ui.foundation.*
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.drawscope.Stroke
-import androidx.ui.layout.*
-import androidx.ui.material.Card
-import androidx.ui.material.IconButton
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.Edit
-import androidx.ui.res.imageResource
-import androidx.ui.unit.dp
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.unit.dp
 import com.example.practicecompose_examples.R
 import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.AppMain
@@ -40,11 +40,11 @@ private fun TaskViewItem(task: Task) {
                             gravity = Alignment.Center,
                             modifier = Modifier.wrapContentSize().fillMaxHeight(),
                             children = {
+                                Stroke(4f)
                                 Image(
                                     asset = imageResource(R.drawable.scene_01),
-                                    modifier = Modifier.drawBackground(
+                                    modifier = Modifier.background(
                                         color = Color.Black,
-                                        style = Stroke(4f),
                                         shape = CircleShape
                                     ).preferredSize(50.dp)
                                         .clip(CircleShape),
@@ -99,9 +99,9 @@ private fun TaskViewItem(task: Task) {
 @Composable
 fun ItemList() {
     MaterialTheme {
-        LazyColumnItems(items = AppMain.taskList) { task ->
+        LazyColumnFor(items = AppMain.taskList, itemContent = { task ->
             TaskViewItem(task)
             Spacer(modifier = Modifier.padding(2.dp))
-        }
+        })
     }
 }

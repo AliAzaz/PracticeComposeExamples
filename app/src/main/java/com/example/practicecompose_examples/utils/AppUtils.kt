@@ -1,8 +1,8 @@
 package com.example.practicecompose_examples.utils
 
 import android.text.TextUtils
-import androidx.compose.MutableState
-import androidx.ui.input.TextFieldValue
+import androidx.compose.runtime.MutableState
+import androidx.compose.ui.text.input.TextFieldValue
 import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.AppMain
 
