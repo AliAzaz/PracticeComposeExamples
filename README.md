@@ -16,7 +16,7 @@ Let's have a look how it's easy to build Hello App:
 ```
 
 ### OUTPUT
-<img alt="Pic-1" src="https://github.com/AliAzaz/PracticeComposeExamples/blob/master/pic01.png" width="200"/>
+<img alt="Pic-1" src="https://github.com/AliAzaz/PracticeComposeExamples/blob/DefaultTemplate/pic01.png" width="200"/>
 
 
 ## CONNECT👍
