@@ -2,15 +2,15 @@ package com.example.practicecompose_examples
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.core.setContent
-import androidx.ui.foundation.Text
-import androidx.ui.graphics.Color
-import androidx.ui.layout.padding
-import androidx.ui.material.MaterialTheme
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
