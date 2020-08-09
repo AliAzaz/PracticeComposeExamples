@@ -21,6 +21,9 @@ Let's have a look how it's easy to build Hello App:
 
 ## CONNECT👍
 Medium: https://medium.com/@ali.azaz.alam
+
 Twitter: https://twitter.com/AliAzazAlam1
+
 Github: https://github.com/aliazaz
+
 LinkedIn: https://www.linkedin.com/in/aliazazalam/
