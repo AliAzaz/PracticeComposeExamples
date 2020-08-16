@@ -80,6 +80,7 @@ You can follow the example code from here: [CardViewTemplate](https://github.com
 <img alt="Pic-1" src="https://github.com/AliAzaz/PracticeComposeExamples/blob/CardViewTemplate/pic_card.png" width="400"/>
 
 
+
 ## CONNECT👍
 Medium: https://medium.com/@ali.azaz.alam
 
