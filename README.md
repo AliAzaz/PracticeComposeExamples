@@ -15,7 +15,9 @@ In this tutorial, we'll follow multiple widgets including:
 A composable layout that aligned it's children in Horizontal Sequence. Some applied arguments on Row function:
 
 ***modifier*** The modifier to be applied to the Row.
+
 ***horizontalArrangement*** The horizontal arrangement of the layout's children.
+
 ***verticalGravity*** The vertical gravity of the layout's children.
 
 ## Box
