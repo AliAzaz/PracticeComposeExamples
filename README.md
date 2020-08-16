@@ -56,8 +56,11 @@ This ***[ContentScale]*** implementation in combination with usage of [Alignment
 
 ## Column
 A composable layout that aligned it's children in Vertical sequence. Some applied arguments on Column function:
+
 ***modifier*** The modifier to be applied to the Column.
+
 ***verticalArrangement*** When the size of the [Column] is larger than the sum of its children sizes, a [verticalArrangement] can be specified to define the positioning of the children inside the [Column].
+
 ***horizontalGravity*** The horizontal gravity of the layout's children.
 
 
