@@ -2,23 +2,24 @@ package com.example.practicecompose_examples
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
-import androidx.ui.core.ContentScale
-import androidx.ui.core.Modifier
-import androidx.ui.core.drawShadow
-import androidx.ui.core.setContent
-import androidx.ui.foundation.*
-import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.layout.*
-import androidx.ui.material.Button
-import androidx.ui.material.Card
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.ArrowForward
-import androidx.ui.material.icons.filled.Check
-import androidx.ui.res.imageResource
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawShadow
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,21 +32,18 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun CardGreeting() {
-    VerticalScroller {
-        Column {
+    MaterialTheme {
+        ScrollableColumn(children = {
             for (x in 0..2) {
-                MaterialTheme {
-                    cardViewImplementer()
-                    Spacer(modifier = Modifier.padding(2.dp))
-                }
+                CardViewImplementer()
+                Spacer(modifier = Modifier.padding(2.dp))
             }
-        }
+        })
     }
-
 }
 
 @Composable
-fun cardViewImplementer() {
+fun CardViewImplementer() {
     Card(
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier.padding(10.dp)
@@ -56,10 +54,15 @@ fun cardViewImplementer() {
                 .drawShadow(5.dp), children =
             {
                 Column(children = {
+                    /* Image(
+                         asset = imageResource(id = R.drawable.scene_01),
+                         modifier = Modifier.preferredHeightIn(160.dp, 260.dp)
+                             .fillMaxWidth(),
+                         contentScale = ContentScale.Crop
+                     )*/
                     Image(
-                        imageResource(id = R.drawable.scene_01),
-                        modifier = Modifier.preferredHeightIn(160.dp, 260.dp)
-                            .fillMaxWidth(),
+                        asset = imageResource(R.drawable.scene_01),
+                        modifier = Modifier.fillMaxWidth().preferredHeight(260.dp),
                         contentScale = ContentScale.Crop
                     )
                     Text(
@@ -76,19 +79,19 @@ fun cardViewImplementer() {
                                 Button(
                                     onClick = {},
                                     shape = RoundedCornerShape(5.dp),
-                                    modifier = Modifier.padding(5.dp)
-                                ) {
-                                    Icon(asset = Icons.Filled.Check)
-                                }
+                                    modifier = Modifier.padding(5.dp),
+                                    content = {
+                                        Icon(asset = Icons.Filled.Check)
+                                    }
+                                )
                                 Button(
                                     onClick = {},
                                     shape = RoundedCornerShape(5.dp),
-                                    modifier = Modifier.padding(5.dp)
-                                ) {
-
-                                    Icon(asset = Icons.Filled.ArrowForward)
-
-                                }
+                                    modifier = Modifier.padding(5.dp),
+                                    content = {
+                                        Icon(asset = Icons.Filled.ArrowForward)
+                                    }
+                                )
                             })
                         })
                 })
