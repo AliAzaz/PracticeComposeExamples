@@ -2,7 +2,7 @@
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 
-In this tutorial, we'll follow how to extract image resource and populate in **Image** and what is **Column** & **Row**.
+In this tutorial, we'll follow how to extract image resource and populate in **Image** and what is **Column**.
 
 ## Image Widget
 
