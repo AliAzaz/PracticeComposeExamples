@@ -63,6 +63,9 @@ A composable layout that aligned it's children in Vertical sequence. Some applie
 
 ***horizontalGravity*** The horizontal gravity of the layout's children.
 
+### CODE
+
+You can follow the example code from here: [ImageColumnTemplate](https://github.com/AliAzaz/PracticeComposeExamples/blob/ImageColumnTemplate/app/src/main/java/com/example/practicecompose_examples/MainActivity.kt)
 
 ### OUTPUT
 <img alt="Pic-1" src="https://github.com/AliAzaz/PracticeComposeExamples/blob/ImageColumnTemplate/pic_card.png" width="400"/>
