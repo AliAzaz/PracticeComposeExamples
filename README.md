@@ -1,4 +1,4 @@
-# CardView Template with Buttons
+# CardView and ListView Template with Buttons
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 
