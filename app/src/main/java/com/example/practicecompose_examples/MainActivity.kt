@@ -9,13 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
-import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.AppMain
 import com.example.practicecompose_examples.state.MenuOptions
 import com.example.practicecompose_examples.state.routingActivity
-import com.example.practicecompose_examples.ui.add.AddTask
-import com.example.practicecompose_examples.ui.list.ItemList
-import com.example.practicecompose_examples.ui.list.TaskList
+import com.example.practicecompose_examples.ui.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,8 +24,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (AppMain.route_screen !is MenuOptions.TaskList)
-            routingActivity(MenuOptions.TaskList)
+        if (AppMain.route_screen !is MenuOptions.ScaffoldItemsList)
+            routingActivity(MenuOptions.ScaffoldItemsList)
         else
             super.onBackPressed()
 
@@ -46,9 +43,7 @@ fun TODOAppGreeting() {
 @Preview
 @Composable
 fun DefaultPreview() {
-//    TODOAppGreeting()
-    AppMain.taskList.add(Task("Abcd", "alfkladdadda alfkladdadda alfkladdadda alfkladdadda"))
-    ItemList()
+    TODOAppGreeting()
 }
 
 @Composable
@@ -56,9 +51,12 @@ fun AppContent(app: AppMain) {
     Crossfade(current = app.route_screen) { activity ->
         Surface(color = MaterialTheme.colors.background) {
             when (activity) {
-                is MenuOptions.AddTask -> AddTask()
-                is MenuOptions.TaskList -> TaskList()
-                is MenuOptions.ModifyTask -> AddTask(activity.task)
+                is MenuOptions.FabWidget -> FabWidgetBtnLayout()
+                is MenuOptions.ScaffoldItemsList -> AllItemList()
+                MenuOptions.FabDockedWidget -> FabDockedWidgetBtnLayout()
+                MenuOptions.TopBarWidget -> TopBarWidgetLayout()
+                MenuOptions.BottomBarWidget -> BottomBarWidgetLayout()
+                MenuOptions.DrawerWidget -> DrawerWidgetLayout()
             }
         }
 
