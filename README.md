@@ -79,7 +79,7 @@ LazyRowFor(items = AppMain.taskList, itemContent = { task ->
 You can follow the example code from here: [CardViewTemplate](https://github.com/AliAzaz/PracticeComposeExamples/blob/CardViewTemplate/app/src/main/java/com/example/practicecompose_examples/MainActivity.kt)
 
 ### OUTPUT
-<img alt="Pic-1" src="https://github.com/AliAzaz/PracticeComposeExamples/blob/CardViewTemplate/pic_card.png" width="400"/>
+<img alt="Pic-1" src="https://github.com/AliAzaz/PracticeComposeExamples/blob/ListCardViewTemplate/pic_card.png" width="400"/>
 
 
 
