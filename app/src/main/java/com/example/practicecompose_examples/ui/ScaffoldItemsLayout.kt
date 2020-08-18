@@ -1,25 +1,24 @@
 package com.example.practicecompose_examples.ui
 
-import androidx.compose.foundation.ClickableText
 import androidx.compose.foundation.Icon
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.state
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.vector.VectorAsset
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -75,16 +74,38 @@ fun FabDockedWidgetBtnLayout() {
 
 @Composable
 fun BottomBarWidgetLayout() {
+    val selectedMenuItem = state { 0 }
+    val menuItems = listOf(
+        Pair("Home", Icons.Filled.Home),
+        Pair("Contact", Icons.Filled.Phone),
+        Pair("Settings", Icons.Filled.Settings)
+    )
+
     Scaffold(
         bottomBar = {
             BottomAppBar(cutoutShape = RectangleShape, content = {
                 BottomNavigation {
-
+                    menuItems.forEachIndexed { index, item ->
+                        BottomNavigationItem(
+                            icon = { Icon(item.second) },
+                            selected = selectedMenuItem.value == index,
+                            onSelect = { selectedMenuItem.value = index },
+                            label = { Text(text = item.first) },
+                            selectedContentColor = Color.Magenta,
+                            unselectedContentColor = Color.White
+                        )
+                    }
                 }
             })
         },
         bodyContent = {
-            ItemLayout("BottomBar Layout")
+            Column {
+                ItemLayout("BottomBar Layout")
+                Text(
+                    text = "${menuItems.get(selectedMenuItem.value).first} Selected",
+                    style = MaterialTheme.typography.h6, modifier = Modifier.padding(20.dp)
+                )
+            }
         }
     )
 }
@@ -127,18 +148,22 @@ fun DrawerWidgetLayout() {
                 }
             )
         }, drawerContent = {
-            LazyColumnFor(
-                items = listOf("Home", "Contact", "Close Drawer"),
-                modifier = Modifier.fillMaxSize()
-            ) { items ->
-                ClickableText(
-                    text = AnnotatedString(text = items),
-                    onClick = {
-                        drawerSetting.close()
-                    },
-                    style = MaterialTheme.typography.h5,
-                    modifier = Modifier.padding(10.dp)
+            Column {
+                Image(
+                    asset = imageResource(R.drawable.scene_01),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .preferredHeight(150.dp)
+                        .padding(0.dp, 0.dp, 0.dp, 10.dp),
+                    contentScale = ContentScale.Crop
                 )
+                TextViewStyle(item = "Home", asset = Icons.Filled.Home)
+                TextViewStyle(item = "Contact", asset = Icons.Filled.Phone)
+                TextViewStyle(item = "Settings", asset = Icons.Filled.Settings)
+                Divider(color = Color.LightGray, modifier = Modifier.padding(20.dp))
+                Button(onClick = { drawerSetting.close() }, content = {
+                    Text(text = "Close")
+                }, modifier = Modifier.padding(10.dp))
             }
         }, bodyContent = {
             ItemLayout("Drawer Layout")
@@ -161,5 +186,20 @@ fun ItemLayout(title: String, fabCounter: MutableState<Int>? = null) {
             )
         }
 
+    }
+}
+
+@Composable
+fun TextViewStyle(item: String, asset: VectorAsset) {
+    Row(modifier = Modifier.padding(10.dp)) {
+        Icon(
+            asset = asset,
+            modifier = Modifier.padding(0.dp, 3.dp, 5.dp, 0.dp)
+        )
+        Text(
+            text = item,
+            style = MaterialTheme.typography.body1,
+            modifier = Modifier.padding(5.dp, 3.dp, 0.dp, 0.dp)
+        )
     }
 }
