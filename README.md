@@ -34,16 +34,16 @@ fun Scaffold(
 )
 ```
 
-    * ***scaffoldState*** It contains the state of the screen, it's used for manual control over the drawer behavior, sizes of components, etc
-    * ***topBar*** top app bar of the screen
-    * ***bottomBar*** bottom bar of the screen
-    * ***floatingActionButton*** Main action button of your screen
-    * ***floatingActionButtonPosition*** position of the FAB on the screen. See [FabPosition] for possible options available.
-    * ***isFloatingActionButtonDocked*** whether [floatingActionButton] should overlap with [bottomBar] for half a height, if [bottomBar] exists.
-    * ***drawerContent*** content of the Drawer sheet that can be pulled from the left side (right for RTL).
-    * ***drawerShape*** shape of the drawer sheet (if set).
-    * ***drawerElevation*** drawer sheet elevation. This controls the size of the shadow below the drawer sheet (if set).
-    * ***bodyContent*** It contains content that shows on screen
+* ***scaffoldState*** It contains the state of the screen, it's used for manual control over the drawer behavior, sizes of components, etc
+* ***topBar*** top app bar of the screen
+* ***bottomBar*** bottom bar of the screen
+* ***floatingActionButton*** Main action button of your screen
+* ***floatingActionButtonPosition*** position of the FAB on the screen. See [FabPosition] for possible options available.
+* ***isFloatingActionButtonDocked*** whether [floatingActionButton] should overlap with [bottomBar] for half a height, if [bottomBar] exists.
+* ***drawerContent*** content of the Drawer sheet that can be pulled from the left side (right for RTL).
+* ***drawerShape*** shape of the drawer sheet (if set).
+* ***drawerElevation*** drawer sheet elevation. This controls the size of the shadow below the drawer sheet (if set).
+* ***bodyContent*** It contains content that shows on screen
 
 
 ## TopApp Bar Component
@@ -85,13 +85,13 @@ fun FloatingActionButton(
 )
 ```
 
- * ***modifier*** applied modifications to FAB
- * ***onClick*** click event. The FAB will be disabled when it is null.
- * ***shape*** The shape of this FAB
- * ***backgroundColor*** The background color
- * ***contentColor*** The preferred content color for content inside this FAB
- * ***elevation*** The z-coordinate that controls the size of the shadow below the button
- * ***icon*** the content of this FAB
+* ***modifier*** applied modifications to FAB
+* ***onClick*** click event. The FAB will be disabled when it is null.
+* ***shape*** The shape of this FAB
+* ***backgroundColor*** The background color
+* ***contentColor*** The preferred content color for content inside this FAB
+* ***elevation*** The z-coordinate that controls the size of the shadow below the button
+* ***icon*** the content of this FAB
 
 ## Floating Docked Button Component
 Docked FAB overlap with bottomBar for half a height, if bottomBar exists. The implementation exactly same as FAB but you've to set some more arguments to achieve docked FAB.
