@@ -13,6 +13,9 @@ In this tutorial, we'll learn root items of Scaffold in detail. This tutorial wo
 * Divider
 * State Management
 
+### OUTPUT
+<img alt="Pic-1" src="https://github.com/AliAzaz/PracticeComposeExamples/blob/ScaffoldItemsViewTemplate/images/scaffold_items.jpg" width="1300"/>
+
 ## Scaffold
 In jetpack compose applying visual layout structure is implemented using scaffold component. This ensures proper layout strategy for material
 components including floating button, topbar, bottombar and drawer to work together correctly. Scaffold component contains these arguments:
@@ -239,9 +242,6 @@ I've defined state management in depth with all perspectives. Read it from [here
 ### CODE
 
 You can follow the example code from here: [ScaffoldWidgetsTemplate](https://github.com/AliAzaz/PracticeComposeExamples/blob/ScaffoldItemsViewTemplate/app/src/main/java/com/example/practicecompose_examples/ui/ScaffoldItemsLayout.kt)
-
-### OUTPUT
-<img alt="Pic-1" src="https://github.com/AliAzaz/PracticeComposeExamples/blob/ScaffoldItemsViewTemplate/images/scaffold_items.jpg" width="1300"/>
 
 
 ## CONNECT👍
