@@ -2,7 +2,7 @@
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 
-In this tutorial, we'll learn root items of Scaffold widgets in detail. This tutorial would be little bit lengthy so stay connected. We are going to follow:
+In this tutorial, we'll learn root items of Scaffold in detail. This tutorial would be a little bit longer so stay connected. We are going to learn:
 
 * What is Scaffold
 * TopApp Bar
@@ -14,8 +14,8 @@ In this tutorial, we'll learn root items of Scaffold widgets in detail. This tut
 * State Management
 
 ## Scaffold
-In jetpack compose implementing visual layout structure is implemented using scaffold component. This component ensures proper layout strategy for material
-components includes floating button, topbar, bottombar and drawer will work together correctly. Scaffold component contains these arguments:
+In jetpack compose applying visual layout structure is implemented using scaffold component. This ensures proper layout strategy for material
+components including floating button, topbar, bottombar and drawer to work together correctly. Scaffold component contains these arguments:
 
 ```sh
 @Composable
@@ -104,11 +104,11 @@ Docked FAB overlap with bottomBar for half a height, if bottomBar exists. The im
 These both arguments are available in scaffold composable function.
 
 ## Side Drawer Layout Component
-Drawer sheet that's pulled from left side or from right if text orientation is RTL. Its looks like side navigation drawer from native API.
-The implementation is too simple, you can achieve drawer by setting some arguments or Scaffold or to implement using ***ModalDrawerLayout***.
+Drawer sheet that's pulled from left side or from right if text orientation is RTL. Its looks like side navigation drawer in native API.
+The implementation is too simple, you can achieve drawer by setting some arguments in Scaffold or to implement using ***ModalDrawerLayout***.
 
 
-***First approach using scaffold:***
+***First approach using Scaffold:***
 
 ```sh
 val drawerSetting = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -132,8 +132,7 @@ val drawerSetting = rememberDrawerState(initialValue = DrawerValue.Closed)
         })
 ```
 
-In this approach, we first set ScaffoldState for configuring drawer. ***DrawerValue.Closed*** means the default behaviour of drawer is closed when app launched, you can also change
-it to ***Open***. In drawerContent we define contents that we want to show in drawer.
+In this approach, we first configuring drawer by setting ScaffoldState. ***DrawerValue.Closed*** means the default behaviour of drawer is closed when app launched, you can also change it to ***Open***. In ***drawerContent*** we define contents that we want to show in drawer.
 
 
 ***Second approach using ModalDrawerLayout:***
@@ -150,7 +149,6 @@ fun ModalDrawerLayout(
 ```
 
 This approach granted that the drawer is elevated above the app’s UI and don’t affect the screen’s layout grid. The function takes some arguments:
-
 
 * ***drawerState*** define state of the drawer
 * ***gesturesEnabled*** set gestures means will your drawer open or closed using touch gestures or not
@@ -180,7 +178,7 @@ when [BottomAppBar] and [FloatingActionButton] are being used together in [Scaff
 The cutout look will not visible if null value is passed in cutoutShape.
 
 ### BottomNavigation
-In this heading we will learn BottomNavigation. It's a type of TABs navigation architecture type of layout. BottomNavigation contains [BottomNavigationItem]
+In this heading we will learn BottomNavigation. It's a type of TABs navigation architecture layout. BottomNavigation contains [BottomNavigationItem]
 that defines single item and show in [RowScope] manner.
 
 ```sh
