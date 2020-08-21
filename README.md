@@ -104,11 +104,61 @@ Docked FAB overlap with bottomBar for half a height, if bottomBar exists. The im
 These both arguments are available in scaffold composable function.
 
 ## Side Drawer Layout Component
-Drawer sheet that's pulled from left side or from right if it's RTL. Its looks like side navigation drawer in native API.
+Drawer sheet that's pulled from left side or from right if text orientation is RTL. Its looks like side navigation drawer from native API.
+The implementation is too simple, you can achieve drawer by setting some arguments or Scaffold or to implement using ***ModalDrawerLayout***.
+
+
+***First approach using scaffold:***
 
 ```sh
-
+val drawerSetting = rememberDrawerState(initialValue = DrawerValue.Closed)
+    Scaffold(
+        scaffoldState = ScaffoldState(drawerSetting),
+        topBar = {
+            TopAppBar(
+                title = {Text(text = "Practice Drawer")},
+                navigationIcon = {
+                    IconButton(onClick = {drawerSetting.open()}, icon = {Icon(Icons.Filled.Menu)})
+                }
+            )
+        }, drawerContent = {
+            Column {
+                TextViewStyle(item = "Home", asset = Icons.Filled.Home)
+                TextViewStyle(item = "Contact", asset = Icons.Filled.Phone)
+                TextViewStyle(item = "Settings", asset = Icons.Filled.Settings)
+            }
+        }, bodyContent = {
+            ItemLayout("Drawer Layout")
+        })
 ```
+
+In this approach, we first set ScaffoldState for configuring drawer. ***DrawerValue.Closed*** means the default behaviour of drawer is closed when app launched, you can also change
+it to ***Open***. In drawerContent we define contents that we want to show in drawer.
+
+
+***Second approach using ModalDrawerLayout:***
+
+```sh
+fun ModalDrawerLayout(
+    drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
+    gesturesEnabled: Boolean = true,
+    drawerShape: Shape = MaterialTheme.shapes.large,
+    drawerElevation: Dp = DrawerConstants.DefaultElevation,
+    drawerContent: @Composable () -> Unit,
+    bodyContent: @Composable () -> Unit
+)
+```
+
+This approach granted that the drawer is elevated above the app’s UI and don’t affect the screen’s layout grid. The function takes some arguments:
+
+
+* ***drawerState*** define state of the drawer
+* ***gesturesEnabled*** set gestures means will your drawer open or closed using touch gestures or not
+* ***drawerShape*** shape of the drawer sheet
+* ***drawerElevation*** to controls the size of the shadow below the drawer sheet
+* ***drawerContent*** defines your content that will show inside the drawer
+* ***bodyContent*** defines your content that will show on rest of the UI
+
 
 ## Bottom Bar Component
 It's placed at the bottom of screen
@@ -125,9 +175,13 @@ fun BottomAppBar(
 )
 ```
 
+* ***cutoutShape*** the cutout will be added to the BottomAppBar. It would be the same shape that's used inside the [FloatingActionButton],
+when [BottomAppBar] and [FloatingActionButton] are being used together in [Scaffold]. This shape will be drawn with an offset around all sides.
+The cutout look will not visible if null value is passed in cutoutShape.
+
 ### BottomNavigation
 In this heading we will learn BottomNavigation. It's a type of TABs navigation architecture type of layout. BottomNavigation contains [BottomNavigationItem]
-that defines single item and show in [RowScope].
+that defines single item and show in [RowScope] manner.
 
 ```sh
 @Composable
@@ -145,6 +199,18 @@ fun BottomNavigationItem(
 )
 ```
 
+As, an android developer we mostly deal with jetpack navigation architecture and you already knows that how's tricky to implement it. Now, as comparison to compose navigation
+it's too easy to implement it. Let's discuss about the arguments:
+
+
+* ***icon*** navigation tab icon for this item
+* ***selected*** it takes boolean value to specify whether this item is selected
+* ***onSelect*** callback that's invoked when this item is selected
+* ***label*** text label that show with item and it's optional.
+* ***alwaysShowLabels*** it takes boolean value. If it's false, then the labels will only be shown when this item is selected.
+* ***selectedContentColor*** the color of the text label and icon when this item is selected
+* ***unselectedContentColor*** the color of the text label and icon when this item is not selected
+
 ## Divider Component
 Create a thin line on the screen
 
@@ -158,11 +224,18 @@ fun Divider(
 )
 ```
 
- * ***color*** color of the divider line
- * ***thickness*** thickness of the divider line, 1 dp is used by default
- * ***startIndent*** start offset of this line
+* ***color*** color of the divider line
+* ***thickness*** thickness of the divider line, 1 dp is used by default
+* ***startIndent*** start offset of this line
 
- ## State Management
+## State Management
+According to the state management in jetpack compose, the specific subscribed @composable function recomposes itself with the new data
+if the value of the state is updated not the whole UI. In Jetpack compose the state management is to be done using two ways:
+
+* State
+* MutableStateOf
+
+I've defined state management in depth with all perspectives. Read it from [here](https://medium.com/@ali.azaz.alam/jetpack-compose-state-management-73ec3f6c74a5)
 
 
 ### CODE
