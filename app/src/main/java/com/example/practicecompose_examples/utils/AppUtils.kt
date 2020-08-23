@@ -2,7 +2,6 @@ package com.example.practicecompose_examples.utils
 
 import android.text.TextUtils
 import androidx.compose.runtime.MutableState
-import androidx.compose.ui.text.input.TextFieldValue
 import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.AppMain
 
@@ -10,8 +9,8 @@ fun addTask(taskText: Task) {
     AppMain.taskList.add(Task(taskText.title, taskText.message))
 }
 
-fun isTitleExist(title: MutableState<TextFieldValue>): Boolean {
-    val item = AppMain.taskList.find { it.title == title.value.text.trim() }
+fun isTitleExist(title: MutableState<String>): Boolean {
+    val item = AppMain.taskList.find { it.title == title.value.trim() }
     return item != null
 }
 
@@ -25,7 +24,7 @@ fun deleteTask(task: Task) {
 }
 
 fun validateFields(
-    titleText: MutableState<TextFieldValue>,
-    taskText: MutableState<TextFieldValue>
+    titleText: MutableState<String>,
+    taskText: MutableState<String>
 ): Boolean =
-    !TextUtils.isEmpty(titleText.value.text.trim()) && !TextUtils.isEmpty(taskText.value.text.trim())
+    !TextUtils.isEmpty(titleText.value.trim()) && !TextUtils.isEmpty(taskText.value.trim())

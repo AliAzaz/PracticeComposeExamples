@@ -9,12 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
-import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.AppMain
 import com.example.practicecompose_examples.state.MenuOptions
 import com.example.practicecompose_examples.state.routingActivity
 import com.example.practicecompose_examples.ui.add.AddTask
-import com.example.practicecompose_examples.ui.list.ItemList
 import com.example.practicecompose_examples.ui.list.TaskList
 
 class MainActivity : AppCompatActivity() {
@@ -46,9 +44,7 @@ fun TODOAppGreeting() {
 @Preview
 @Composable
 fun DefaultPreview() {
-//    TODOAppGreeting()
-    AppMain.taskList.add(Task("Abcd", "alfkladdadda alfkladdadda alfkladdadda alfkladdadda"))
-    ItemList()
+    TODOAppGreeting()
 }
 
 @Composable

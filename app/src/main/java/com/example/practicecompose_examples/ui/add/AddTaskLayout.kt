@@ -16,7 +16,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.state
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -24,7 +25,6 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.example.practicecompose_examples.R
 import com.example.practicecompose_examples.model.Task
@@ -37,9 +37,10 @@ import com.example.practicecompose_examples.utils.validateFields
 
 @Composable
 fun AddTask(data: Task = Task("", "")) {
-    val title = state { TextFieldValue(text = data.title) }
-    val task = state { TextFieldValue(text = data.message) }
-    val titleExist = state { false }
+//    var title = remember { mutableStateOf(TextFieldValue(text = data.title)) }
+    val title = remember { mutableStateOf(data.title) }
+    val task = remember { mutableStateOf(data.message) }
+    val titleExist = remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxWidth().height(300.dp), children = {
 
@@ -80,8 +81,7 @@ fun AddTask(data: Task = Task("", "")) {
                             modifier = Modifier.fillMaxWidth(),
                             textStyle = MaterialTheme.typography.h6,
                             backgroundColor = Color.White
-                        )
-                        if (data.title != "") Text(
+                        ) else Text(
                             modifier = Modifier.padding(5.dp),
                             text = data.title,
                             style = TextStyle(color = Color(0x77666666)) + MaterialTheme.typography.h6
@@ -118,8 +118,8 @@ fun AddTask(data: Task = Task("", "")) {
 private fun AddTaskBtn(
     titleExist: MutableState<Boolean>,
     prvTask: Task,
-    titleText: MutableState<TextFieldValue>,
-    taskText: MutableState<TextFieldValue>
+    titleText: MutableState<String>,
+    taskText: MutableState<String>
 ) {
     val taskFlag = prvTask.title == ""
     Button(
@@ -137,8 +137,8 @@ private fun AddTaskBtn(
             when {
                 titleExist.value -> return@Button
                 !validateFields(titleText, taskText) -> return@Button
-                taskFlag -> addTask(Task(titleText.value.text, taskText.value.text))
-                else -> modifyTask(prvTask, Task(titleText.value.text, taskText.value.text))
+                taskFlag -> addTask(Task(titleText.value, taskText.value))
+                else -> modifyTask(prvTask, Task(titleText.value, taskText.value))
             }
             routingActivity(MenuOptions.TaskList)
         },
