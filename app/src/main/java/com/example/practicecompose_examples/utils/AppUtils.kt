@@ -19,7 +19,7 @@ fun modifyTask(prvTask: Task, taskText: Task) {
     AppMain.taskList = item.toMutableList()
 }
 
-fun deleteTask(task: Task) {
+fun deleteTask(index: Int, task: Task) {
     AppMain.taskList.remove(task)
 }
 

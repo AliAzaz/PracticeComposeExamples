@@ -3,6 +3,7 @@ package com.example.practicecompose_examples.ui.list
 import androidx.compose.foundation.Icon
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.vectorResource
 import com.example.practicecompose_examples.R
@@ -16,7 +17,7 @@ fun FabAddTask() {
             routingActivity(MenuOptions.AddTask)
         },
         backgroundColor = colorResource(
-            id = R.color.teel_200
+            id = R.color.purple_200
         )
-    ) { Icon(asset = vectorResource(id = R.drawable.ic_note_add)) }
+    ) { Icon(asset = vectorResource(id = R.drawable.ic_note_add), tint = Color.White) }
 }
