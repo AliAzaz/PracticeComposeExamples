@@ -19,8 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.example.practicecompose_examples.R
 import com.example.practicecompose_examples.model.Task
@@ -36,11 +36,10 @@ private fun TaskViewItem(index: Int, task: Task) {
         val boxWidth = run { constraints.maxWidth / 3 }
         Card(
             shape = RoundedCornerShape(10.dp),
-            modifier = Modifier.padding(10.dp).fillMaxWidth().heightIn(80.dp, 120.dp)
+            modifier = Modifier.padding(10.dp).fillMaxWidth().preferredHeight(80.dp)
                 .then(
                     Modifier.swipeToDelete(
-                        constraints = Constraints.fixedWidth(boxWidth * 3),
-                        swipeDirection = LayoutDirection.Rtl,
+                        constraints = Constraints.fixedWidth(boxWidth),
                         onDelete = { deleteTask(index, task) })
                 ),
             elevation = 3.dp,
@@ -69,13 +68,18 @@ private fun TaskViewItem(index: Int, task: Task) {
                                     .wrapContentSize(),
                                 children = {
                                     Text(
-                                        task.title,
-                                        modifier = Modifier.wrapContentHeight(),
+                                        text = task.title,
+                                        maxLines = 1,
+                                        modifier = Modifier.preferredHeight(20.dp),
+                                        overflow = TextOverflow.Ellipsis,
                                         style = MaterialTheme.typography.h6
                                     )
                                     Text(
-                                        task.message,
-                                        modifier = Modifier.wrapContentHeight(),
+                                        text = task.message,
+                                        maxLines = 1,
+                                        modifier = Modifier.preferredHeight(50.dp)
+                                            .padding(0.dp, 10.dp, 0.dp, 0.dp),
+                                        overflow = TextOverflow.Ellipsis,
                                         style = MaterialTheme.typography.body2
                                     )
                                 })
