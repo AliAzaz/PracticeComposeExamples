@@ -10,7 +10,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.state
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -27,7 +28,7 @@ import com.example.practicecompose_examples.R
 
 @Composable
 fun FabWidgetBtnLayout() {
-    val fabCounter = state { 0 }
+    val fabCounter = remember { mutableStateOf(0) }
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -49,7 +50,7 @@ fun FabWidgetBtnLayout() {
 
 @Composable
 fun FabDockedWidgetBtnLayout() {
-    val fabCounter = state { 0 }
+    val fabCounter = remember { mutableStateOf(0) }
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -65,7 +66,7 @@ fun FabDockedWidgetBtnLayout() {
         },
         bottomBar = { BottomAppBar(cutoutShape = CircleShape, content = {}) },
         isFloatingActionButtonDocked = true,
-        floatingActionButtonPosition = Scaffold.FabPosition.Center,
+        floatingActionButtonPosition = FabPosition.Center,
         bodyContent = {
             ItemLayout("Fab Docked Layout", fabCounter)
         }
@@ -74,7 +75,7 @@ fun FabDockedWidgetBtnLayout() {
 
 @Composable
 fun BottomBarWidgetLayout() {
-    val selectedMenuItem = state { 0 }
+    val selectedMenuItem = remember { mutableStateOf(0) }
     val menuItems = listOf(
         Pair("Home", Icons.Filled.Home),
         Pair("Contact", Icons.Filled.Phone),
@@ -102,7 +103,7 @@ fun BottomBarWidgetLayout() {
             Column {
                 ItemLayout("BottomBar Layout")
                 Text(
-                    text = "${menuItems.get(selectedMenuItem.value).first} Selected",
+                    text = "${menuItems[selectedMenuItem.value].first} Selected",
                     style = MaterialTheme.typography.h6, modifier = Modifier.padding(20.dp)
                 )
             }
@@ -132,8 +133,9 @@ fun TopBarWidgetLayout() {
 @Composable
 fun DrawerWidgetLayout() {
     val drawerSetting = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scaffoldSetting = rememberScaffoldState(drawerState = drawerSetting)
     Scaffold(
-        scaffoldState = ScaffoldState(drawerSetting),
+        scaffoldState = scaffoldSetting,
         topBar = {
             TopAppBar(
                 title = {
