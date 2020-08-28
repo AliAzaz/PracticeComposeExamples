@@ -233,7 +233,7 @@ fun Divider(
 According to the state management in jetpack compose, the specific subscribed @composable function recomposes itself with the new data
 if the value of the state is updated not the whole UI. In Jetpack compose the state management is to be done using two ways:
 
-* State
+* remember {mutableStateOf(...)}
 * MutableStateOf
 
 I've defined state management in depth with all perspectives. Read it from [here](https://medium.com/@ali.azaz.alam/jetpack-compose-state-management-73ec3f6c74a5)
