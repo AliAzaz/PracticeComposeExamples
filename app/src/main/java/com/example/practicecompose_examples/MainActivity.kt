@@ -13,6 +13,7 @@ import com.example.practicecompose_examples.state.AppMain
 import com.example.practicecompose_examples.state.MenuOptions
 import com.example.practicecompose_examples.state.routingActivity
 import com.example.practicecompose_examples.ui.add.AddTask
+import com.example.practicecompose_examples.ui.list.ItemList
 import com.example.practicecompose_examples.ui.list.TaskList
 
 class MainActivity : AppCompatActivity() {
@@ -44,7 +45,8 @@ fun TODOAppGreeting() {
 @Preview
 @Composable
 fun DefaultPreview() {
-    TODOAppGreeting()
+//    TODOAppGreeting()
+    ItemList()
 }
 
 @Composable

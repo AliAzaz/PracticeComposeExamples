@@ -6,7 +6,7 @@ import com.example.practicecompose_examples.model.Task
 import com.example.practicecompose_examples.state.AppMain
 
 fun addTask(taskText: Task) {
-    AppMain.taskList.add(Task(taskText.title, taskText.message))
+    AppMain.taskList.add(Task(taskText.title, taskText.message, taskText.date))
 }
 
 fun isTitleExist(title: MutableState<String>): Boolean {

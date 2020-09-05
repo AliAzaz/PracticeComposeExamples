@@ -30,9 +30,11 @@ import com.example.practicecompose_examples.utils.addTask
 import com.example.practicecompose_examples.utils.isTitleExist
 import com.example.practicecompose_examples.utils.modifyTask
 import com.example.practicecompose_examples.utils.validateFields
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Composable
-fun AddTask(data: Task = Task("", "")) {
+fun AddTask(data: Task = Task("", "", "")) {
     val title = remember { mutableStateOf(data.title) }
     val task = remember { mutableStateOf(data.message) }
     val titleExist = remember { mutableStateOf(false) }
@@ -132,8 +134,20 @@ private fun AddTaskBtn(
             when {
                 titleExist.value -> return@Button
                 !validateFields(titleText, taskText) -> return@Button
-                taskFlag -> addTask(Task(titleText.value, taskText.value))
-                else -> modifyTask(prvTask, Task(titleText.value, taskText.value))
+                taskFlag -> addTask(
+                    Task(
+                        titleText.value, taskText.value,
+                        SimpleDateFormat("dd/MM/yyyy").format(Date().time)
+                    )
+                )
+                else -> modifyTask(
+                    prvTask, Task(
+                        titleText.value, taskText.value, String.format(
+                            "M:%s",
+                            SimpleDateFormat("dd/MM/yyyy").format(Date().time)
+                        )
+                    )
+                )
             }
             routingActivity(MenuOptions.TaskList)
         },
